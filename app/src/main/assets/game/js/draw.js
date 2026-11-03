@@ -143,6 +143,7 @@ function drawBird(c, x, y, s, ch, o = {}) {
   const t = G.t + (o.phase || 0);
   const flap = o.flap != null ? o.flap : 0.5 + Math.sin(t * 3) * 0.15;
   const line = tone(ch.body, -0.5);
+  if (typeof Bird3D !== 'undefined' && Bird3D.draw(c, x, y, s, ch, o, face, flap, t)) return;
   const sp = ch.species;
   c.save();
   c.translate(x, y);

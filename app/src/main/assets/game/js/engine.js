@@ -200,6 +200,7 @@ function frame(now) {
   G.t += dt;
   try {
     Input.poll(dt);
+    if (typeof Bird3D !== 'undefined') Bird3D.frame();
     if (G.fadeDir !== 0) {
       G.fade += G.fadeDir * dt * 4;
       if (G.fadeDir > 0 && G.fade >= 1) {

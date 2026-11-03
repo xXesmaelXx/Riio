@@ -4,6 +4,7 @@
 Save.load();
 Input.init();
 World3D.init();
+Bird3D.init();
 
 document.addEventListener('visibilitychange', () => {
   if (document.hidden) {

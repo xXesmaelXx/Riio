@@ -2,7 +2,7 @@
 
 A carnival party game for Android about a flock of tropical birds. It has a story mode, 8 minigames, local multiplayer for 1–4 players, and support for game controllers.
 
-All characters, art, music and story are original. The stages are real-time 3D scenes rendered with [Three.js](https://threejs.org) in a toon-shaded cartoon style, with the characters drawn on top. Everything is generated in code and the music is synthesized at runtime, so the game ships with no image or audio files.
+All characters, art, music and story are original. The stages and the birds are real-time 3D, rendered with [Three.js](https://threejs.org) in a toon-shaded cartoon style with outlines. Everything is generated in code and the music is synthesized at runtime, so the game ships with no image or audio files.
 
 ## Features
 
@@ -59,4 +59,5 @@ app/src/main/java/.../MainActivity.java   Full-screen WebView host + native cont
 app/src/main/assets/game/js/               Engine, input, audio, drawing, menus
 app/src/main/assets/game/games/            The 8 minigames
 app/src/main/assets/game/js/world3d.js     3D stages (Three.js, bundled in lib/)
+app/src/main/assets/game/js/bird3d.js      3D bird models and hats, cached as sprites
 ```

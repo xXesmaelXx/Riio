@@ -43,6 +43,7 @@ class PlayScene {
   }
   enter() {
     this.inst = this.def.create(this.players, this.params);
+    Bird3D.warm(this.players.map((p) => [p.char, p.hat]));
     Music.play(this.def.song);
     Input.touchLayout = null;
   }
