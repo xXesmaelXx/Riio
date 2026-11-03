@@ -121,6 +121,7 @@ class RiverGame {
   }
   draw(c) {
     const t = G.t;
+    if (!World3D.request('river', 0, { flow: this.flow })) {
     // banks
     c.fillStyle = '#1f7f4a'; c.fillRect(0, 0, W, H);
     for (let side = 0; side < 2; side++) for (let i = 0; i < 9; i++) {
@@ -136,6 +137,7 @@ class RiverGame {
     for (let i = 0; i < 26; i++) {
       const x = this.L + 20 + (i * 137) % (this.R - this.L - 40), y = ((i * 89 + this.flow * 1.4) % (H + 80)) - 40;
       c.beginPath(); c.moveTo(x, y); c.quadraticCurveTo(x + 8, y + 18, x, y + 36); c.stroke();
+    }
     }
     for (const o of this.objs) {
       if (o.k === 'whirl') {

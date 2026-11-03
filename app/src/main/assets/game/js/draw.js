@@ -526,6 +526,7 @@ function drawHills(c, baseY, scroll, amp, col, freq = 0.004, phase = 0) {
 }
 
 function drawBackground(c, theme, scroll = 0) {
+  if (typeof World3D !== 'undefined' && World3D.request(theme, scroll)) return;
   const t = G.t;
   switch (theme) {
     case 'beach': {

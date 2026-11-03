@@ -168,9 +168,13 @@ class BossGame {
   }
   postUpdate(dt) { this.fx.update(dt); }
   draw(c) {
+    if (World3D.request('arena')) {
+      c.strokeStyle = 'rgba(255,210,63,0.7)'; c.lineWidth = 4; c.setLineDash([16, 12]); rrect(c, this.ax0 - 40, this.ay0 - 50, this.ax1 - this.ax0 + 80, this.ay1 - this.ay0 + 90, 30); c.stroke(); c.setLineDash([]);
+    } else {
     drawBackground(c, 'carnival');
     c.fillStyle = 'rgba(80,40,120,0.6)'; rrect(c, this.ax0 - 40, this.ay0 - 50, this.ax1 - this.ax0 + 80, this.ay1 - this.ay0 + 90, 30); c.fill();
     c.strokeStyle = '#ffd23f'; c.lineWidth = 4; c.setLineDash([16, 12]); rrect(c, this.ax0 - 40, this.ay0 - 50, this.ax1 - this.ax0 + 80, this.ay1 - this.ay0 + 90, 30); c.stroke(); c.setLineDash([]);
+    }
     for (const f of this.fruit) drawFruit(c, f.kind, f.x, f.y + Math.sin(G.t * 4 + f.x) * 3, 1.3);
     for (const b of this.bombs) {
       if (b.exploded) continue;

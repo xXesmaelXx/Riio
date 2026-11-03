@@ -129,11 +129,12 @@ class BumpGame {
   }
   draw(c) {
     const t = G.t;
+    const R = this.R, ry = 0.62;
+    if (!World3D.request('island', 0, { R })) {
     const g = c.createLinearGradient(0, 0, 0, H); g.addColorStop(0, '#0d6fb8'); g.addColorStop(1, '#23b5d3');
     c.fillStyle = g; c.fillRect(0, 0, W, H);
     c.strokeStyle = 'rgba(255,255,255,0.25)'; c.lineWidth = 3;
     for (let i = 0; i < 30; i++) { const x = (i * 211 + t * 20) % (W + 100) - 50, y = (i * 97) % H; c.beginPath(); c.arc(x, y, 16, Math.PI * 1.1, Math.PI * 1.9); c.stroke(); }
-    const R = this.R, ry = 0.62;
     c.fillStyle = 'rgba(255,255,255,0.35)'; ellipse(c, this.cx, this.cy, R + 26 + Math.sin(t * 2) * 5, (R + 26) * ry); c.fill();
     c.fillStyle = '#d9b46a'; ellipse(c, this.cx, this.cy + 16, R + 4, (R + 4) * ry); c.fill();
     const sg = c.createRadialGradient(this.cx - R * 0.3, this.cy - R * 0.3, R * 0.1, this.cx, this.cy, R * 1.05);
@@ -142,6 +143,7 @@ class BumpGame {
     drawBeachBall(c, this.cx + R * 0.75, this.cy - R * ry * 0.75, 20, G.t);
     c.fillStyle = '#efc777';
     for (let i = 0; i < 18; i++) { const a = i * 2.4, d = (i * 37) % (R * 0.85); c.fillRect(this.cx + Math.cos(a) * d, this.cy + Math.sin(a) * d * ry, 14, 4); }
+    }
     if (this.timeLeft < 25) drawText(c, 'The sandbar is shrinking!', W / 2, H - 24, 26, '#fff6b0', 'center');
     const order = this.birds.map((b, i) => i).sort((a, b) => this.birds[a].y - this.birds[b].y);
     for (const i of order) {

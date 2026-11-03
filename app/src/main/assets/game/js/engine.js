@@ -85,7 +85,7 @@ const Save = {
       hats: {},            // charId -> hatId
       lastChar: 'pico',
       beaten: false,
-      opts: { music: 0.6, sfx: 0.8, vibrate: true, touchAlpha: 0.55, difficulty: 1 },
+      opts: { music: 0.6, sfx: 0.8, vibrate: true, touchAlpha: 0.55, difficulty: 1, gfx3d: true },
       stats: { played: 0, partyWins: 0, fruitCaught: 0 },
     };
   },
@@ -213,8 +213,7 @@ function frame(now) {
     if (G.scene && G.fadeDir <= 0) G.scene.update(dt);
 
     ctx.setTransform(1, 0, 0, 1, 0, 0);
-    ctx.fillStyle = '#000';
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.setTransform(view.s, 0, 0, view.s, view.ox, view.oy);
     ctx.save();
     ctx.beginPath(); ctx.rect(0, 0, W, H); ctx.clip();
@@ -222,6 +221,7 @@ function frame(now) {
     if (typeof drawToasts === 'function') drawToasts(ctx, dt);
     if (G.fade > 0) { ctx.fillStyle = 'rgba(15,5,35,' + G.fade + ')'; ctx.fillRect(0, 0, W, H); }
     ctx.restore();
+    if (typeof World3D !== 'undefined') World3D.render();
     Input.endFrame();
   } catch (err) {
     G.lastError = err;

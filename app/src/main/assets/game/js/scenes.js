@@ -281,6 +281,10 @@ class AdventureMap extends MenuScene {
     drawText(c, ch.name, x, y - 84, 24, locked ? '#aaa' : '#fff', 'center');
   }
   draw(c) {
+    if (World3D.request('map')) {
+      c.strokeStyle = 'rgba(255,243,192,0.95)'; c.lineWidth = 10; c.setLineDash([18, 16]);
+      c.beginPath(); MAP_NODES.forEach(([x, y], i) => (i ? c.lineTo(x, y) : c.moveTo(x, y))); c.stroke(); c.setLineDash([]);
+    } else {
     // island map
     skyGrad(c, '#1e88e5', '#4dd0e1');
     c.fillStyle = '#f7d794'; ellipse(c, 640, 460, 640, 270); c.fill();
@@ -289,6 +293,7 @@ class AdventureMap extends MenuScene {
     c.strokeStyle = '#fff3c0'; c.lineWidth = 10; c.setLineDash([18, 16]);
     c.beginPath(); MAP_NODES.forEach(([x, y], i) => (i ? c.lineTo(x, y) : c.moveTo(x, y))); c.stroke(); c.setLineDash([]);
     drawPalm(c, 60, 600, 0.6, Math.sin(G.t)); drawPalm(c, 1220, 620, 0.6, Math.sin(G.t + 1));
+    }
     drawTitle(c, 'Adventure', 'Recover the 5 pieces of the Golden Drum!');
     this.menu.draw(c);
     // player marker on the newest chapter
@@ -768,10 +773,11 @@ class OptionsScene extends MenuScene {
       { label: 'Vibration: ' + (o.vibrate ? 'On' : 'Off'), key: 'vibrate' },
       { label: 'Touch buttons: ' + pct(o.touchAlpha), key: 'touchAlpha', step: 0.15 },
       { label: 'CPU skill: ' + ['Easy', 'Normal', 'Hard'][o.difficulty], key: 'difficulty' },
+      { label: '3D graphics: ' + (o.gfx3d !== false ? 'On' : 'Off (faster)'), key: 'gfx3d' },
       { label: this.confirmReset ? 'Press again to ERASE save' : 'Reset save data', key: 'reset', color: '#c0392b' },
     ];
     const start = this.menu ? this.menu.i : 0;
-    this.menu = new Menu(rows.map((r, i) => Object.assign({ x: 290, y: 150 + i * 82, w: 700, h: 68, size: 28, color: r.color || '#4d7cff', action: () => this.change(r.key, 1) }, r)), { start });
+    this.menu = new Menu(rows.map((r, i) => Object.assign({ x: 290, y: 140 + i * 74, w: 700, h: 62, size: 26, color: r.color || '#4d7cff', action: () => this.change(r.key, 1) }, r)), { start });
   }
   change(key, dir) {
     const o = Save.data.opts;
@@ -782,6 +788,7 @@ class OptionsScene extends MenuScene {
     }
     this.confirmReset = false;
     if (key === 'vibrate') o.vibrate = !o.vibrate;
+    else if (key === 'gfx3d') o.gfx3d = o.gfx3d === false;
     else if (key === 'difficulty') o.difficulty = (o.difficulty + dir + 3) % 3;
     else {
       const step = key === 'touchAlpha' ? 0.15 : 0.1;

@@ -2,7 +2,7 @@
 
 A carnival party game for Android about a flock of tropical birds. It has a story mode, 8 minigames, local multiplayer for 1–4 players, and support for game controllers.
 
-All characters, art, music and story are original. Graphics are drawn in code and music is synthesized at runtime, so the game ships with no image or audio files.
+All characters, art, music and story are original. The stages are real-time 3D scenes rendered with [Three.js](https://threejs.org) in a toon-shaded cartoon style, with the characters drawn on top. Everything is generated in code and the music is synthesized at runtime, so the game ships with no image or audio files.
 
 ## Features
 
@@ -22,7 +22,8 @@ All characters, art, music and story are original. Graphics are drawn in code an
 - **Wardrobe**: spend the fruit you collect on 11 hats. Each bird remembers its own outfit.
 - **1–4 players**: each controller is one player, and CPU birds (Easy, Normal or Hard) fill the empty seats.
 - **Controls**: touch controls (virtual stick and buttons), Bluetooth/USB gamepads, and keyboard.
-- **Other**: options (volume, vibration, touch button opacity, CPU skill), auto-save, and pause/resume.
+- **3D stages**: a sunny beach bay, the Old Town market plaza, Cloud Hills, a jungle waterfall, the jungle river, a night carnival, the Beach Bump island, the boss arena, and a 3D Adventure island map. Older phones can switch 3D off in Options.
+- **Other**: options (volume, vibration, touch button opacity, CPU skill, 3D on/off), auto-save, and pause/resume.
 
 ## Getting the APK
 
@@ -57,4 +58,5 @@ Open `app/src/main/assets/game/index.html` in a browser. Keyboard controls are a
 app/src/main/java/.../MainActivity.java   Full-screen WebView host + native controller input
 app/src/main/assets/game/js/               Engine, input, audio, drawing, menus
 app/src/main/assets/game/games/            The 8 minigames
+app/src/main/assets/game/js/world3d.js     3D stages (Three.js, bundled in lib/)
 ```
