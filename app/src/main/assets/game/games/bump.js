@@ -136,7 +136,10 @@ class BumpGame {
     const R = this.R, ry = 0.62;
     c.fillStyle = 'rgba(255,255,255,0.35)'; ellipse(c, this.cx, this.cy, R + 26 + Math.sin(t * 2) * 5, (R + 26) * ry); c.fill();
     c.fillStyle = '#d9b46a'; ellipse(c, this.cx, this.cy + 16, R + 4, (R + 4) * ry); c.fill();
-    c.fillStyle = '#f7d794'; ellipse(c, this.cx, this.cy, R, R * ry); c.fill();
+    const sg = c.createRadialGradient(this.cx - R * 0.3, this.cy - R * 0.3, R * 0.1, this.cx, this.cy, R * 1.05);
+    sg.addColorStop(0, '#fff1c4'); sg.addColorStop(0.6, '#f7d794'); sg.addColorStop(1, '#e5b866');
+    c.fillStyle = sg; ellipse(c, this.cx, this.cy, R, R * ry); c.fill();
+    drawBeachBall(c, this.cx + R * 0.75, this.cy - R * ry * 0.75, 20, G.t);
     c.fillStyle = '#efc777';
     for (let i = 0; i < 18; i++) { const a = i * 2.4, d = (i * 37) % (R * 0.85); c.fillRect(this.cx + Math.cos(a) * d, this.cy + Math.sin(a) * d * ry, 14, 4); }
     if (this.timeLeft < 25) drawText(c, 'The sandbar is shrinking!', W / 2, H - 24, 26, '#fff6b0', 'center');

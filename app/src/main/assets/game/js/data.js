@@ -3,22 +3,22 @@
 
 const CHARS = {
   pico: { id: 'pico', name: 'Pico', species: 'parrot', desc: 'A big-hearted scarlet parrot who has never danced at the Fiesta.',
-    body: '#e8322f', belly: '#ffb02e', wing: '#2f6fe0', wingTip: '#ffd23f', head: '#ef3b36', beak: '#f3e9d2', cheek: '#ffd9c2',
+    body: '#e8322f', belly: '#ffb02e', wing: '#2f6fe0', wingTip: '#ffd23f', head: '#ef3b36', beak: '#f3e9d2', cheek: '#ffd9c2', iris: '#7a4a1e',
     tail: ['#e8322f', '#2f6fe0', '#ffd23f'], speed: 1, power: 1 },
   tuca: { id: 'tuca', name: 'Tuca', species: 'toucan', desc: "Pico's toucan best friend. Strong, loud and always hungry.",
-    body: '#1d1d26', belly: '#fff4d6', wing: '#2b2b36', head: '#1d1d26', beak: '#ff7a1a', eyeRing: '#53c1ff', cheek: '#fff4d6',
+    body: '#1d1d26', belly: '#fff4d6', wing: '#2b2b36', head: '#1d1d26', beak: '#ff7a1a', eyeRing: '#53c1ff', cheek: '#fff4d6', iris: '#3b7a2e',
     tail: ['#14141b'], speed: 0.95, power: 1.2 },
   zuzu: { id: 'zuzu', name: 'Zuzu', species: 'hummingbird', desc: 'A lightning-fast hummingbird courier from Old Town.',
-    body: '#2ec27e', belly: '#c8f7d0', wing: '#9be7ff', head: '#26a96c', beak: '#3a2a20', cheek: '#d6338a', crest: '#7d3cff',
+    body: '#2ec27e', belly: '#c8f7d0', wing: '#9be7ff', head: '#26a96c', beak: '#3a2a20', cheek: '#d6338a', crest: '#7d3cff', iris: '#4a2a6a',
     tail: ['#1f8f5a'], speed: 1.15, power: 0.85 },
   nina: { id: 'nina', name: 'Nina', species: 'spoonbill', desc: 'A graceful spoonbill who is the best dancer in the jungle.',
-    body: '#ff8fb3', belly: '#ffd1e0', wing: '#e5527f', wingTip: '#c2185b', head: '#ffa6c3', beak: '#b9a2a8', legs: '#d9536f',
+    body: '#ff8fb3', belly: '#ffd1e0', wing: '#e5527f', wingTip: '#c2185b', head: '#ffa6c3', beak: '#b9a2a8', legs: '#d9536f', iris: '#c2185b',
     tail: ['#e5527f'], speed: 1.05, power: 1 },
   corvo: { id: 'corvo', name: 'Don Corvo', species: 'crow', desc: 'The grumpy crow who stole the Golden Drum. Not so bad after all.',
-    body: '#2a2340', belly: '#3d3358', wing: '#1a1530', head: '#2a2340', beak: '#e0b33a', pupil: '#c0392b', brow: true,
+    body: '#2a2340', belly: '#3d3358', wing: '#1a1530', head: '#2a2340', beak: '#e0b33a', iris: '#d4a017', brow: true,
     tail: ['#1a1530', '#2a2340'], speed: 1.05, power: 1.15 },
   tio: { id: 'tio', name: 'Tio Lorito', species: 'parrot', desc: 'The wise old parrot who keeps the Golden Drum.',
-    body: '#7fae5b', belly: '#d8e7b0', wing: '#4f7f3a', head: '#93c06e', beak: '#d9d2c0', crest: '#c9d86b', cheek: '#eef5d2',
+    body: '#7fae5b', belly: '#d8e7b0', wing: '#4f7f3a', head: '#93c06e', beak: '#d9d2c0', crest: '#c9d86b', cheek: '#eef5d2', iris: '#5a4a2a',
     tail: ['#4f7f3a', '#c9d86b'], speed: 1, power: 1 },
 };
 const PLAYABLE = ['pico', 'tuca', 'zuzu', 'nina', 'corvo'];

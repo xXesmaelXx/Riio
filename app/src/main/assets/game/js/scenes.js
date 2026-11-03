@@ -56,18 +56,23 @@ class TitleScene {
   draw(c) {
     drawBackground(c, 'menu');
     const t = G.t;
-    PLAYABLE.slice(0, Save.data.beaten ? 5 : 4).forEach((id, i) => {
-      const x = ((t * 120 + i * 330) % (W + 300)) - 150, y = 330 + Math.sin(t * 2 + i) * 40 + (i % 2) * 70;
-      drawBird(c, x, y, 1.2, id, { legs: false, flap: 0.5 + Math.sin(t * 14 + i) * 0.5, hat: Save.data.hats[id] || 'none' });
+    const cast = [['tuca', 300, 470, 2.3, -0.1], ['nina', 990, 470, 2.2, 0.08], ['zuzu', 820, 560, 1.7, 0.05], ['pico', 560, 520, 3.1, -0.04]];
+    if (Save.data.beaten) cast.unshift(['corvo', 1160, 560, 1.7, 0]);
+    cast.forEach(([id, x, y, sc, rot], i) => {
+      const bob = Math.sin(t * 2.5 + i) * 8;
+      drawBird(c, x, y + bob, sc, id, { hat: Save.data.hats[id] || 'none', flap: 0.55 + Math.sin(t * 5 + i) * 0.35, rot: rot + Math.sin(t * 2 + i) * 0.04, face: x > 700 ? -1 : 1, mood: 'happy', legs: false });
     });
-    c.save(); c.translate(W / 2, 190); c.rotate(Math.sin(t * 1.5) * 0.02);
-    const s = 1 + Math.sin(t * 3) * 0.02; c.scale(s, s);
-    drawText(c, 'FEATHER', 0, -20, 110, '#ffd23f', 'center');
-    drawText(c, 'FIESTA', 0, 90, 120, '#ff5d8f', 'center');
+    drawLogoWord(c, 'FEATHER', W / 2 - 40, 150, 118, ['#2f8cff', '#ffc93c', '#ff4d4d', '#3ddc84', '#ff8c42', '#2f8cff', '#ff5d8f'], 4);
+    drawLogoWord(c, 'FIESTA', W / 2 + 30, 270, 132, ['#ff8c42', '#ff4d6d', '#ffc93c', '#3ddc84', '#2f8cff', '#b967ff'], 4);
+    // party badge with a beach ball
+    c.save(); c.translate(1065, 250); c.rotate(-0.12 + Math.sin(t * 2) * 0.03);
+    panel(c, -120, -42, 240, 84, '#fff6c8', '#ff5d8f', 26);
+    drawText(c, 'Multiplayer', 0, -6, 28, '#ff4d6d', 'center', false, '900');
+    drawText(c, 'Party Game!', 0, 26, 28, '#2f8cff', 'center', false, '900');
     c.restore();
-    drawText(c, 'A Carnival Party Adventure', W / 2, 330, 28, '#fff', 'center');
-    if (Math.floor(t * 2) % 2 === 0) drawText(c, Input.lastSource === 'touch' ? 'Tap to start' : 'Press A to start', W / 2, 600, 36, '#fff', 'center');
-    drawText(c, '1-4 players  •  Controllers supported', W / 2, 690, 20, '#ffe9f0', 'center');
+    drawBeachBall(c, 230, 250, 52, t * 0.8);
+    if (Math.floor(t * 2) % 2 === 0) drawText(c, Input.lastSource === 'touch' ? 'Tap to start' : 'Press A to start', W / 2, 650, 38, '#fff', 'center');
+    drawText(c, '1-4 players  •  Controllers supported', W / 2, 700, 20, '#fff', 'center');
   }
 }
 
@@ -92,7 +97,7 @@ class MainMenu extends MenuScene {
   back() { setScene(new TitleScene()); }
   draw(c) {
     drawBackground(c, 'menu');
-    drawText(c, 'FEATHER FIESTA', 90, 120, 64, '#ffd23f');
+    drawLogoWord(c, 'FEATHER FIESTA', 430, 115, 64, ['#2f8cff', '#ffc93c', '#ff4d4d', '#3ddc84', '#ff8c42', '#b967ff']);
     drawFruitCounter(c, W - 220, 24);
     panel(c, W - 220, 88, 190, 54, 'rgba(30,14,70,0.85)', '#ffd23f', 27);
     starShape(c, W - 188, 115, 16, true);
